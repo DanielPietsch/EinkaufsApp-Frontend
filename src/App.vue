@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import ItemEntry from './components/ItemEntry.vue'
+import ItemList from './components/ItemList.vue'
 
 // Eine Liste von Beispielen, exakt aufgebaut wie euer Java-Backend-Objekt
 const items = ref([
@@ -15,6 +15,6 @@ const items = ref([
     <h1>🛒 EinkaufsApp</h1>
 
     <!-- v-for iteriert über die Liste und übergibt jedes Item an die Unterkomponente -->
-    <ItemEntry v-for="item in items" :key="item.id" :item="item" />
+    <ItemList :items="items" />
   </main>
 </template>
