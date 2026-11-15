@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import ItemList from './components/ItemList.vue'
+import ItemForm from './components/ItemForm.vue'
 
 // Bauplan für ein Item definieren
 interface Item {
@@ -10,7 +11,7 @@ interface Item {
 }
 
 // Die Liste startet jetzt LEER (keine festen Dummy-Daten mehr im Frontend!)
-const items = ref<Item[]>([])
+const items = ref<{ id: number; name: string; done: boolean }[]>([])
 
 // Diese Funktion holt die Daten per HTTP-GET vom Java-Backend
 function loadItems() {
@@ -39,6 +40,7 @@ onMounted(() => {
 <template>
   <main style="max-width: 500px; margin: 40px auto; font-family: sans-serif">
     <h1>🛒 EinkaufsApp</h1>
+    <ItemForm @created="(item) => items.push(item)" />
     <ItemList :items="items" />
   </main>
 </template>
